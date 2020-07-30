@@ -42,6 +42,7 @@
   err_type_str;
   fgetxattr;
   flistxattr;
+  flush_all_logs;
   fhlink;
   fhreadlink;
   free_export_ops;
@@ -123,6 +124,7 @@
   LogMallocFailure;
   LogWarn;
   lru_cleanup_entries;
+  mapr_exit;
   mdcache_param;
   merge_share;
   msg_fsal_err;
@@ -195,6 +197,7 @@
   set_common_verifier;
   set_const_log_str;
   SetNameFunction;
+  spawn_log_flusher;
   sprint_sockip;
   start_fsals;
   state_err_str;
