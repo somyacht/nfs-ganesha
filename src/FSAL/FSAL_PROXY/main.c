@@ -132,7 +132,7 @@ static fsal_status_t pxy_init_config(struct fsal_module *fsal_hdl,
 MODULE_INIT void pxy_init(void)
 {
 	if (register_fsal(&PROXY.module, "PROXY", FSAL_MAJOR_VERSION,
-			  FSAL_MINOR_VERSION, FSAL_ID_NO_PNFS) != 0)
+			  FSAL_MINOR_VERSION, FSAL_ID_NO_PNFS, NULL) != 0)
 		return;
 	PROXY.module.m_ops.init_config = pxy_init_config;
 	PROXY.module.m_ops.create_export = pxy_create_export;

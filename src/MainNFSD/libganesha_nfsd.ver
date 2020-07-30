@@ -124,6 +124,7 @@
   LogMallocFailure;
   LogWarn;
   lru_cleanup_entries;
+  mapr_exit;
   mdcache_param;
   merge_share;
   msg_fsal_err;

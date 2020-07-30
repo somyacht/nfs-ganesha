@@ -86,6 +86,8 @@ static nfs_start_info_t my_nfs_start_info = {
 config_file_t nfs_config_struct;
 char *nfs_host_name = "localhost";
 
+void mapr_exit(int exit_status);
+
 /* command line syntax */
 
 static const char options[] = "v@L:N:f:p:FRTE:Ch";
@@ -170,7 +172,7 @@ int main(int argc, char *argv[])
 	/* get host name */
 	if (gethostname(localmachine, sizeof(localmachine)) != 0) {
 		fprintf(stderr, "Could not get local host name, exiting...\n");
-		exit(1);
+		mapr_exit(1);
 	} else {
 		nfs_host_name = main_strdup("host_name", localmachine);
 	}
@@ -189,7 +191,7 @@ int main(int argc, char *argv[])
 			printf("Git HEAD = %s\n", _GIT_HEAD_COMMIT);
 			printf("Git Describe = %s\n", _GIT_DESCRIBE);
 #endif
-			exit(0);
+			mapr_exit(0);
 			break;
 
 		case 'L':
@@ -203,7 +205,7 @@ int main(int argc, char *argv[])
 			if (debug_level == -1) {
 				fprintf(stderr,
 					"Invalid value for option 'N': NIV_NULL, NIV_MAJ, NIV_CRIT, NIV_EVENT, NIV_DEBUG, NIV_MID_DEBUG or NIV_FULL_DEBUG expected.\n");
-				exit(1);
+				mapr_exit(1);
 			}
 			break;
 
@@ -234,7 +236,7 @@ int main(int argc, char *argv[])
 			fprintf(stderr, "\tKeytabPath = /etc/krb5.keytab ;\n");
 			fprintf(stderr, "\tActive_krb5 = true ;\n");
 			fprintf(stderr, "}\n\n\n");
-			exit(1);
+			mapr_exit(1);
 			break;
 
 		case 'T':
@@ -252,11 +254,11 @@ int main(int argc, char *argv[])
 
 		case 'h':
 			fprintf(stderr, usage, exec_name);
-			exit(0);
+			mapr_exit(0);
 
 		default: /* '?' */
 			fprintf(stderr, "Try '%s -h' for usage\n", exec_name);
-			exit(1);
+			mapr_exit(1);
 		}
 	}
 
@@ -361,7 +363,7 @@ int main(int argc, char *argv[])
 			LogFullDebug(COMPONENT_MAIN,
 				     "Starting a child of pid %d",
 				     son_pid);
-			exit(0);
+			mapr_exit(0);
 			break;
 		}
 #endif
